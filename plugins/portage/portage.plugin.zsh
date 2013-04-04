@@ -16,5 +16,5 @@ else
         alias eup="emerge  -avuND world"
 fi
  
-alias eresume="emerge --ask --verboze --resume "
-alias emerge="emerge --ask --verboze "
+alias eresume="emerge --ask --verbose --resume "
+alias emerge="emerge --ask --verbose "
