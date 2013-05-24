@@ -4,6 +4,7 @@ alias j='jlogin'
 alias sd='ssh -v'
 alias s="mosh --ssh='ssh -l drew'"
 alias kms="mosh --ssh='ssh -l kms'"
+alias lisa="mosh --ssh='ssh -l lisa'"
 alias sr='ssh -v -l root'
 alias se='ssh -v -l exstatica'
 alias bb='ssh -v -i ~/.ssh/safesoft_id_rsa -l admin'
