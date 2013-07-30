@@ -1,17 +1,9 @@
-alias t='clogin'
-alias c='clogin'
-alias j='jlogin'
-alias sd='ssh -v'
-alias s="mosh --ssh='ssh -l drew'"
+alias s="ssh -v"
+alias m="mosh"
 alias kms="mosh --ssh='ssh -l kms'"
 alias lisa="mosh --ssh='ssh -l lisa'"
+alias mr="mosh --ssh='ssh -l rppt'"
 alias sr='ssh -v -l root'
-alias se='ssh -v -l exstatica'
-alias bb='ssh -v -i ~/.ssh/safesoft_id_rsa -l admin'
-
-alias o='mosh root@o.d.scurvy'
-alias sulfur='s sulfur'
-alias redline='s redline'
 
 alias w1='watch -n 1'
 alias w5='watch -n 5'
