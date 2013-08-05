@@ -2,7 +2,7 @@ alias s="ssh -v"
 alias m="mosh"
 alias kms="mosh --ssh='ssh -l kms'"
 alias lisa="mosh --ssh='ssh -l lisa'"
-alias mr="mosh --ssh='ssh -l rppt'"
+alias mr="mosh --ssh='ssh -l root'"
 alias sr='ssh -v -l root'
 
 alias w1='watch -n 1'
