@@ -1,6 +1,6 @@
 alias s="ssh -v"
-alias m="mosh"
 alias sr='ssh -v -l root'
+alias m="mosh"
 
 alias w1='watch -n 1'
 alias w5='watch -n 5'
@@ -8,15 +8,15 @@ alias w10='watch -n 10'
 
 # mosh aliases
 lisa() {
- mosh --ssh='ssh -l lisa' $1 -- sudo tmux attach
+ mosh --ssh='ssh -l lisa' $1 -- sudo tmux attach -d
 }
 
 mr() {
- mosh --ssh='ssh -l root' $1 -- tmux attach
+ mosh --ssh='ssh -l root' $1 -- tmux attach -d
 }
 
 me() {
- mosh $1 -- sudo tmux attach
+ mosh $1 -- sudo tmux attach -d
 }
 
 
