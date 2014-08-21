@@ -8,14 +8,17 @@ alias w10='watch -n 10'
 
 # mosh aliases
 lisa() {
+ print -Pn "\e]0;$1\a"
  mosh --ssh='ssh -l lisa' $1 -- sudo tmux attach -d
 }
 
 mr() {
+ print -Pn "\e]0;$1\a"
  mosh --ssh='ssh -l root' $1 -- tmux attach -d
 }
 
 me() {
+ print -Pn "\e]0;$1\a"
  mosh $1 -- sudo tmux attach -d
 }
 
