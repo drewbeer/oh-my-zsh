@@ -1,11 +1,14 @@
 # Allow SSH tab completion for our aliases hostnames
 compdef lisa=ssh
 compdef me=ssh
+compdef y=ssh
 compdef mr=ssh
 
 alias s="ssh -v"
 alias sr='ssh -v -l root'
 alias m="mosh"
+
+alias y="mosh --ssh='ssh -p 26'"
 
 alias w1='watch -n 1'
 alias w5='watch -n 5'
