@@ -33,8 +33,8 @@ me() {
 m() {
  h=("${(s/./)1}")
  h=$h[1]
- print -Pn "\e]0;$h\a"
- mosh $1
+ print -Pn "\e]0;$1\a"
+ mosh $1 -- tmux attach -d
 }
 
 y() {
