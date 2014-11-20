@@ -3,10 +3,10 @@ compdef lisa=ssh
 compdef me=ssh
 compdef y=ssh
 compdef mr=ssh
+compdef m=ssh
 
 alias s="ssh -v"
 alias sr='ssh -v -l root'
-alias m="mosh"
 
 alias y="mosh --ssh='ssh -p 26'"
 
@@ -34,6 +34,13 @@ me() {
  h=$h[1]
  print -Pn "\e]0;$1\a"
  mosh $1 -- sudo tmux attach -d
+}
+
+m() {
+ h=("${(s/./)1}")
+ h=$h[1]
+ print -Pn "\e]0;$1\a"
+ mosh $1
 }
 
 
