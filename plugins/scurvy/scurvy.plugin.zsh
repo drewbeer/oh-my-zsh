@@ -8,12 +8,6 @@ compdef m=ssh
 alias s="ssh -v"
 alias sr='ssh -v -l root'
 
-alias y="mosh --ssh='ssh -p 26'"
-
-alias w1='watch -n 1'
-alias w5='watch -n 5'
-alias w10='watch -n 10'
-
 # mosh aliases
 lisa() {
  h=("${(s/./)1}")
@@ -39,8 +33,15 @@ me() {
 m() {
  h=("${(s/./)1}")
  h=$h[1]
- print -Pn "\e]0;$1\a"
+ print -Pn "\e]0;$h\a"
  mosh $1
+}
+
+y() {
+ h=("${(s/./)1}")
+ h=$h[1]
+ print -Pn "\e]0;$h\a"
+ mosh --ssh='ssh -p 26' $1
 }
 
 
