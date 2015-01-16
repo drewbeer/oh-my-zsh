@@ -8,6 +8,9 @@ compdef m=ssh
 alias s="ssh -v"
 alias sr='ssh -v -l root'
 
+# fix ls to be colorized
+alias ls='ls --color=auto'
+
 # mosh aliases
 lisa() {
  h=("${(s/./)1}")
