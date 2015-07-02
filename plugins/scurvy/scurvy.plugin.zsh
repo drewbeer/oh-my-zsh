@@ -48,7 +48,7 @@ y() {
  mosh --ssh='ssh -p 26' $1
 }
 
-y() {
+j() {
  h=("${(s/./)1}")
  h=$h[1]
  print -Pn "\e]0;$h\a"
