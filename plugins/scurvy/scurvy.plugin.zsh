@@ -52,7 +52,7 @@ j() {
  h=("${(s/./)1}")
  h=$h[1]
  print -Pn "\e]0;$h\a"
- mosh --ssh='ssh -p 27 -l jack' $1
+ mosh --ssh='ssh -p 26 -l jack' $1
 }
 
 
