@@ -2,6 +2,7 @@
 compdef lisa=ssh
 compdef me=ssh
 compdef y=ssh
+compdef j=ssh
 compdef mr=ssh
 compdef m=ssh
 
@@ -45,6 +46,13 @@ y() {
  h=$h[1]
  print -Pn "\e]0;$h\a"
  mosh --ssh='ssh -p 26' $1
+}
+
+j() {
+ h=("${(s/./)1}")
+ h=$h[1]
+ print -Pn "\e]0;$h\a"
+ mosh --ssh='ssh -p 26 -l jack' $1
 }
 
 
