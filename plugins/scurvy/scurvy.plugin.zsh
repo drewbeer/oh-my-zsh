@@ -12,13 +12,6 @@ alias sr='ssh -v -l root'
 # fix ls to be colorized
 alias ls='ls --color=auto'
 
-# mosh aliases
-lisa() {
- h=("${(s/./)1}")
- h=$h[1]
- print -Pn "\e]0;$h\a"
- mosh --ssh='ssh -l lisa' $1 -- sudo tmux attach -d
-}
 
 mr() {
  h=("${(s/./)1}")
@@ -76,4 +69,37 @@ function genpasswd {
     l=$1
   fi
   tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+}
+
+# Make short hostname only if its not an IP address
+__tm_get_hostname(){
+    local HOST="$(echo $* | rev | cut -d ' ' -f 1 | rev)"
+    if echo $HOST | grep -P "^([0-9]+\.){3}[0-9]+" -q; then
+        echo $HOST
+    else
+        echo $HOST| cut -d . -f 1
+    fi
+}
+
+__tm_get_current_window(){
+    tmux list-windows| awk -F : '/\(active\)$/{print $1}'
+}
+
+# Rename window according to __tm_get_hostname and then restore it after the command
+__tm_command() {
+    if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=| cut -d : -f 1)" = "tmux" ]; then
+        __tm_window=$(__tm_get_current_window)
+        # Use current window to change back the setting. If not it will be applied to the active window
+        trap "tmux set-window-option -t $__tm_window automatic-rename on 1>/dev/null"
+        tmux rename-window "$(__tm_get_hostname $*)"
+    fi
+    command "$@"
+}
+
+ssh() {
+    __tm_command ssh "$@"
+}
+
+ec2ssh() {
+    __tm_command ec2ssh "$@"
 }
