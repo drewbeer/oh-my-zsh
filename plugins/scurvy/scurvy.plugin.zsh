@@ -5,8 +5,10 @@ compdef y=ssh
 compdef j=ssh
 compdef mr=ssh
 compdef m=ssh
+compdef m6=ssh
 
 alias s="ssh -v"
+alias sshold="ssh -i ~/.ssh/drew_key_old"
 alias sr='ssh -v -l root'
 
 # fix ls to be colorized
@@ -34,11 +36,25 @@ m() {
  mosh $1
 }
 
+m6() {
+ h=("${(s/./)1}")
+ h=$h[1]
+ print -Pn "\e]0;$h\a"
+ mosh -6 $1
+}
+
 y() {
  h=("${(s/./)1}")
  h=$h[1]
  print -Pn "\e]0;$h\a"
  mosh --ssh='ssh -p 26' $1
+}
+
+y6() {
+ h=("${(s/./)1}")
+ h=$h[1]
+ print -Pn "\e]0;$h\a"
+ mosh -6 --ssh='ssh -p 26' $1
 }
 
 j() {
