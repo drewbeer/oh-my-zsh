@@ -1,8 +1,9 @@
-# Set up hub wrapper for git, if it is available; http://github.com/github/hub
-if [ "$commands[(I)hub]" ]; then
-  if hub --version &>/dev/null; then
-    eval $(hub alias -s zsh)
-  fi
+print -Pru2 -- '%F{yellow}[oh-my-zsh] The %Bgithub%b plugin is deprecated and will be removed in a future release.'
+print -Pru2 -- 'It supports the legacy %Bhub%b CLI. Use the %Bgh%b plugin for GitHub CLI completion.%f'
+
+# Set up hub wrapper for git, if it is available; https://github.com/github/hub
+if (( $+commands[hub] )); then
+  alias git=hub
 fi
 
 # Functions #################################################################
@@ -28,7 +29,7 @@ empty_gh() { # [NAME_OF_REPO]
 # This function will add all non-hidden files to git.
 new_gh() { # [DIRECTORY]
   emulate -L zsh
-  local repo="$1"
+  local repo="${1-.}"
   cd "$repo" \
     || return
 
@@ -38,13 +39,13 @@ new_gh() { # [DIRECTORY]
   print '.*'"\n"'*~' >> .gitignore
   git add [^.]* \
     || return
-  git add .gitignore \
+  git add -f .gitignore \
     || return
   git commit -m 'Initial commit.' \
     || return
   hub create \
     || return
-  git push -u origin master \
+  git push -u origin HEAD \
     || return
 }
 
@@ -54,25 +55,26 @@ new_gh() { # [DIRECTORY]
 # to your GitHub.
 exist_gh() { # [DIRECTORY]
   emulate -L zsh
-  local repo=$1
-  cd "$repo"
+  local repo="${1:-.}"
+  cd "$repo" \
+    || return
 
   hub create \
     || return
-  git push -u origin master
+  git push -u origin HEAD
 }
 
 # git.io "GitHub URL"
 #
 # Shorten GitHub url, example:
-#   https://github.com/nvogel/dotzsh    >   http://git.io/8nU25w  
+#   https://github.com/nvogel/dotzsh    > https://git.io/8nU25w
 # source: https://github.com/nvogel/dotzsh
 # documentation: https://github.com/blog/985-git-io-github-url-shortener
 #
 git.io() {
-  emulate -L zsh
-  curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
+  # emulate -L zsh
+  # curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
+  print -u2 ${(%):-"%F{yellow}%BThe \`git.io\` is deprecated.%b\nView the announcement made by GitHub: https://github.blog/changelog/2022-01-11-git-io-no-longer-accepts-new-urls/%f"}
 }
 
 # End Functions #############################################################
-
